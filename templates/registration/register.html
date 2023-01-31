@@ -1,0 +1,33 @@
+  {%extends 'base.html'%}
+    {%load static%}
+    {%block title%}Register{%endblock%}
+    {%block content%}
+	<header>
+
+		<!-- Jumbotron -->
+		<div class="p-3 text-center bg-dark">
+			<h1 class="mt-2 text-light ">User Registration</h1><br>
+			<!-- Jumbotron -->
+		</div>
+
+	</header>
+
+
+	<section>
+		<div class=" d-flex justify-content-center container my-4 center">
+			{%if msg%}
+				<p class="text-success">{{msg}}</p>
+			{%endif%}
+			<form method="post" action="">
+				<table class="table table-bordered d-flex ">
+					{%csrf_token%}
+					{{form.as_table}}
+					<tr>
+						<td colspan="2"><input type="submit" class="btn btn-primary"></td>
+					</tr>
+				</table>
+				
+			</form>
+		</div>
+	</section>
+{%endblock%}
