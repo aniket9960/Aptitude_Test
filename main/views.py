@@ -21,16 +21,41 @@ def all_categories(request):
 
 def category_questions(request,cat_id):
     category = models.QuizCategory.objects.get(id=cat_id)
-    questions = models.QuizQuestions.objects.filter(category=category)
-    return render(request,'category-questions.html',{'data':questions,'category':category})
+    question = models.QuizQuestions.objects.filter(category=category).order_by('id').first()
+    return render(request,'category-questions.html',{'question':question,'category':category})
 
 
+def submit_answer(request,cat_id,question_id):
+    if request.method=='POST':   
+        
+        category = models.QuizCategory.objects.get(id=cat_id)
+        question = models.QuizQuestions.objects.filter(category=category,id__gt=question_id).exclude(id=question_id).order_by('id').first()
+        
+        if 'skip' in request.POST:
+            if question:
+                return render(request,'category-questions.html',{'question':question,'category':category})
+        
+        
+        if question:
+            return render(request,'category-questions.html',{'question':question,'category':category})
+        else:
+            return HttpResponse("No More Questions")
+        
+    else:
+        return HttpResponse("Method Not Allowed!!!")
+
+class SignUpView(CreateView):
+    form_class = forms.SignUpForm
+    success_url = reverse_lazy('login')
+    template_name = 'registration/register.html'
+
+
+
+"""
 class RegisterView(CreateView):
     form_class = forms.RegisterUser
     success_url = reverse_lazy('login')
-    template_name = 'register.html'
-
-
+    template_name = 'registration/register.html'
 
 def register(request):
     form = forms.RegisterUser
@@ -40,7 +65,7 @@ def register(request):
         if form.is_valid():
             form.save()
             msg='User Registered'
-    return render(request,'registration/register.html',{'form':form,'msg':msg})
+    return render(request,'registration/register.html',{'form':form,'msg':msg}) """
 
 def easy(request):
     return render(request,'easy.html')

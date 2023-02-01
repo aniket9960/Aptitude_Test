@@ -2,34 +2,51 @@
     {%load static%}
     {%block title%}Questions{%endblock%}
     {%block content%}
-    {% for question in data %}
+    
     <div class="card my-4 border-dark shadow">
         <h4 class="card-header">{{question.question}}</h4>
-        <div class="card-body">
-            <table class="table table-hover table-borderless w-auto">
-                <tr>
-                    <th><input id="option_1" type="radio" name="answer"></th>
-                    <td><label for="option_1">{{question.option_1}}</label></td>
-                </tr>
-                <tr>
-                    <td><input id="option_2" type="radio" name="answer"></td>
-                    <td><label for="option_2">{{question.option_2}}</label></td>
-                </tr>
-                <tr>
-                    <td><input id="option_3" type="radio" name="answer"></td>
-                    <td><label for="option_3">{{question.option_3}}</label></td>
-                </tr>
-                <tr>
-                    <td><input id="option_4" type="radio" name="answer"></td>
-                    <td><label for="option_4">{{question.option_4}}</label></td>
-                </tr>
-                
-            </table>
-        </div>
-        <div class="card-footer">
-            <input type="submit" value="Skip" class="btn btn-warning" name="">
-            <input type="submit" value="submit" class="btn btn-primary" name="">
-        </div>
+        <form method="post" action="{% url 'submit_answer' category.id question.id %}">
+            {%csrf_token%}
+            <div class="card-body">
+                <table class="table table-hover table-borderless w-auto">
+                    <tr>
+                        <th><input  value="{{question.option_1}}" id="option_1" type="radio" name="answer"></th>
+                        <td><label for="option_1">{{question.option_1}}</label></td>
+                    </tr>
+                    <tr>
+                        <td><input  value="{{question.option_2}}" id="option_2" type="radio" name="answer"></td>
+                        <td><label for="option_2">{{question.option_2}}</label></td>
+                    </tr>
+                    <tr>
+                        <td><input value="{{question.option_3}}" id="option_3" type="radio" name="answer"></td>
+                        <td><label for="option_3">{{question.option_3}}</label></td>
+                    </tr>
+                    <tr>
+                        <td><input  value="{{question.option_4}}" id="option_4" type="radio" name="answer"></td>
+                        <td><label for="option_4">{{question.option_4}}</label></td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="card-footer">
+                <input type="submit" value="Skip" class="btn btn-warning skipBtn" name="skip">
+                <input type="submit" value="submit" class="btn btn-primary submitBtn" name="submit">
+            </div>
+        </form>
     </div>
-    {%endfor%}
+    
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".submitBtn").on("click",function(){
+            var _checkedAns = $("input[name='answer']:checked").val();
+            if(_checkedAns==undefined)
+            {
+                alert("Select Option");
+                return false;
+            };
+            
+        });
+    });
+</script>
+
     {%endblock%}
