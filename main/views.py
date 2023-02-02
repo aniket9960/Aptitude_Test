@@ -33,9 +33,16 @@ def submit_answer(request,cat_id,question_id):
         
         if 'skip' in request.POST:
             if question:
+                quest=models.QuizQuestions.objects.get(id=question_id)
+                user=request.user
+                answer='Not Submitted'
+                models.UserSubmittedAnswer.objects.create(user=user,question=quest,right_answer=answer)
                 return render(request,'category-questions.html',{'question':question,'category':category})
-        
-        
+        else:
+            quest=models.QuizQuestions.objects.get(id=question_id)
+            user=request.user
+            answer=request.POST['answer']
+            models.UserSubmittedAnswer.objects.create(user=user,question=quest,right_answer=answer)
         if question:
             return render(request,'category-questions.html',{'question':question,'category':category})
         else:

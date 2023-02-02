@@ -2,6 +2,24 @@
 {% block title %}Login{% endblock title %}
 {%load crispy_forms_tags%}
 {% block content %}
+
+<nav class="navbar navbar-expand-lg bg-light text-dark">
+    <div class="container">
+        <a class="navbar-brand">Aptitude</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aira-label="Tpgglenavigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <!--<a class="nav-link" href="{%url 'Home'%}">Home</a>
+                <a class="nav-link" href="{%url 'all_categories'%}">Levels</a> -->
+                 <a class="nav-link" href="{%url 'login'%}">Login</a>
+                <a class="nav-link" href="{%url 'register'%}">Register</a>
+            </div>				
+        </div>
+    </div>
+</nav>
+
 <header>
     <!-- Jumbotron -->
     <div class="p-3 text-center bg-dark">
@@ -11,14 +29,15 @@
 </header>
 <div class=" d-flex justify-content-center container my-4 center">
 	<form method="post" class="form-group">
-        <table class="table table-borderless d-flex mt-lg-0 ">
+        <table class="table table-borderless ">
         {%csrf_token%}
 		{{form|crispy}}
+        <tr><td><p>Don't have an account? <a href="/register">Create One</a></p></td></tr>
         <tr>
             <td colspan="2"><button type="submit" class="btn btn-primary">Login</button><td>
         <tr>
         </table>
-        <p>Don't have an account? <a href="/register">Create One</a></p>
+        
 	</form>
 </div>
 {% endblock content %}
