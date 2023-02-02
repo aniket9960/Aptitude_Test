@@ -56,7 +56,7 @@
             </div>
         </form>
     </div>
-    <script type="text/javascript" src="{% static 'jQuery-countdownTimer/jquery.countdownTimer.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jQuery-countdownTimer/jquery.countdownTimer.js' %}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
         $(".submitBtn").on("click",function(){
@@ -70,8 +70,11 @@
         });
 
         $("#s_timer").countdowntimer({
-            seconds : 25,
-            size : "lg"
+            seconds : 60,
+            size : "sm",
+            timeUp:function(){
+                $(".skipBtn").trigger('click');
+            }
         });
 
     });
