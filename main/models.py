@@ -19,7 +19,7 @@ class QuizQuestions(models.Model):
     option_3 = models.CharField(max_length=200)
     option_4 = models.CharField(max_length=200)
     type = models.CharField(max_length=100)
-    correct_option = models.CharField(max_length=10)
+    correct_option = models.CharField(max_length=200)
     
     
     class Meta:

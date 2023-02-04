@@ -43,10 +43,22 @@ def submit_answer(request,cat_id,question_id):
             user=request.user
             answer=request.POST['answer']
             models.UserSubmittedAnswer.objects.create(user=user,question=quest,right_answer=answer)
+        
         if question:
             return render(request,'category-questions.html',{'question':question,'category':category})
         else:
-            return HttpResponse("No More Questions")
+            #try making program sleep for 1sec to resolve last skip bug
+            result=models.UserSubmittedAnswer.objects.filter(user=request.user)
+            skipped=models.UserSubmittedAnswer.objects.filter(user=request.user,right_answer='Not Submitted').count()
+            attempted=models.UserSubmittedAnswer.objects.filter(user=request.user).exclude(right_answer='Not Submitted').count()
+            
+            RightAns = 0
+            for row in result:
+                if row.right_answer == row.question.correct_option:
+                    RightAns+=1
+                    
+            
+            return render(request,'result.html',{'result':result,'total_skipped':skipped,'attempted':attempted,'RightAns':RightAns})
         
     else:
         return HttpResponse("Method Not Allowed!!!")
