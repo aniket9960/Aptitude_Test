@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="{%url 'Home'%}">Home</a>
-                    <a class="nav-link" href="{%url 'all_categories'%}">Levels</a>
+                    <a class="nav-link" href="{%url 'Branches'%}">Branches</a>
                     {%if user.is_authenticated%}
                     <a class=" nav-link" href="{% url 'logout' %}" >Logout</a>
                     {% endif %}
@@ -27,7 +27,7 @@
     <div class="row">
         {% for category in data%}
         <div class="mt-5 mx-auto gap-2 d-grid col-5">
-                    <a href="{%url 'category_questions' category.id%}" style="font-size:larger;" class="btn btn-primary">{{category.title}}</a><br>
+                    <a href="{%url 'category_questions' branch_id category.id%}" style="font-size:larger;" class="btn btn-primary">{{category.title}}</a><br>
         </div>
         
         {%endfor%}
