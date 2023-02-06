@@ -15,6 +15,7 @@
                   <a class="nav-link text-dark" href="{%url 'Home'%}">Home</a>
                   <a class="nav-link text-dark" href="{%url 'Branches'%}">Branches</a>
                   {%if user.is_authenticated%}
+                  <a href="{% url 'Result_Branch' %}" class="nav-link text-dark float-end">Results</a>
                   <a href="{% url 'logout' %}" class="nav-link text-dark float-end">Logout</a>
                   {% endif %}
                   {% if not user.is_authenticated %}

@@ -24,11 +24,11 @@
         </div>
     </nav>
 
-    <h3 class="my-4">All Categories</h3>
+    <h3 class="my-4">All Categories </h3>
     <div class="row">
         {% for category in data%}
         <div class="mt-5 mx-auto gap-2 d-grid col-5">
-                    <a href="{%url 'category_questions' branch_id category.id%}" style="font-size:larger;" class="btn btn-primary">{{category.title}}</a><br>
+                    <a href="{%url 'result' branch_id category.id%}" style="font-size:larger;" class="btn btn-primary">{{category.title}}</a><br>
         </div>
         
         {%endfor%}

@@ -12,10 +12,11 @@
             </button>
             <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="{%url 'Home'%}">Home</a>
-                    <a class="nav-link" href="{%url 'Branches'%}">Branches</a>
+                    <a class="nav-link text-dark" href="{%url 'Home'%}">Home</a>
+                    <a class="nav-link text-dark" href="{%url 'Branches'%}">Branches</a>
                     {%if user.is_authenticated%}
-                        <a href="{% url 'logout' %}" class="nav-link  float-end">Logout</a>
+                        <a href="{% url 'Result_Branch' %}" class="nav-link text-dark float-end">Results</a>
+                        <a href="{% url 'logout' %}" class="nav-link text-dark float-end">Logout</a>
                     {% endif %}
                     
                 </div>				
@@ -33,11 +34,11 @@
       </div>
         
     </header>
-
-    
-    
-    <h2 class="my-4">Attempted Questions</h2> 
-    <h4>Total Attempted {{attempted}} </h4>
+    <div class="mt-1 mx-auto d-grid col-5 text-center">
+    <h4 class="my-4"><span>Branch: {{branch}}</span><span class="space">Category: {{category}}</span></h4>
+    </div>
+    <h4 class="my-4">Attempted Questions</h4>
+    <h5>Total Attempted {{attempted}} </h5>
     <h6>Total Correct Answers : {{RightAns}}</h6>
     <table class="table table-bordered">
         <thead>
@@ -71,6 +72,7 @@
     
     <h2 class="my-4">Skipped Questions</h2>
     <h4>Total Skipped {{total_skipped}} </h4>
+    {% if total_skipped != 0 %}
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -92,5 +94,6 @@
             {%endfor%}
         </tbody>
     </table>
+    {% endif %}
 
     {% endblock %}

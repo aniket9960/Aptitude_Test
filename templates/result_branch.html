@@ -29,7 +29,7 @@
         <div class="row">
             {% for branch in data%}
             <div class="mt-5 mx-auto gap-2 d-grid col-5">
-                        <a href="{%url 'all_categories' branch.id%}" style="font-size:larger;" class="btn btn-primary">{{ branch.title}}</a><br>
+                        <a href="{%url 'result_cat' branch.id%}" style="font-size:larger;" class="btn btn-primary">{{ branch.title}}</a><br>
             </div>
             
             {%endfor%}

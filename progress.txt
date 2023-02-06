@@ -1,0 +1,58 @@
+base.html =done
+home.html =done
+
+register-view.py  	=done
+	register_form	=done
+	login_form	=done
+register.html		=done
+login.html		=done
+
+Create models		=done
+	1.branches
+	2.category
+	3.type
+	4.Questions
+
+Branche.html		=done
+all-categories.hmtl {easy,inte..,hard}		=done
+category-question.html				=done
+	~question_timer - 60_sec		=done
+
+update functions in views.py			
+	~index					=done
+	~aissms					=done
+	~all_categories				=done
+	~category_questions			
+		-filter Question		=done
+			-branch			=done
+			-category		=done
+			-15 each on 1 type =60 total 	=Incomplete???
+
+update URL.py			=done
+	~index
+	~aissms
+	~all_categories
+	~category_questions
+
+create model 				=done
+	1.user submitted ans
+create submit_answer function		=done
+	~submit
+	~skip
+update URL.py - submit_answer		=done
+
+result_branch.html			=done
+result_cat.html				=done
+result.html				=done
+
+update view.py				=done
+	~result_branch
+	~result_cat
+	~result
+		-filter Question
+			-branch
+			-category
+
+
+
+after submitting all questions page should not get refreshed 	=Incomplete???
