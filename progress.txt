@@ -54,5 +54,7 @@ update view.py				=done
 			-category
 
 
-
+User attempt = 1 in 24hrs for each category =Incomplete???
+delete results after 24 hrs =Incomplete???
 after submitting all questions page should not get refreshed 	=Incomplete???
+
