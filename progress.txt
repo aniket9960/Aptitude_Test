@@ -54,8 +54,16 @@ update view.py				=done
 			-category
 
 
-if test not attempted display Alert/message 			=Incomplete???
-User attempt = 1 in 24hrs for each category 			=Incomplete???
-delete results after 24 hrs 					=Incomplete???
-after submitting all questions page should not get refreshed 	=Incomplete???
+if test not attempted display Alert/message 				=Incomplete???
+if required
+	User attempt = 1 in 24hrs for each category 			=Incomplete???
+	delete results after 24 hrs 					=Incomplete???
+after submitting all questions page should not get refreshed 		=Incomplete???
+
+
+remove type model
+display result in pie chart on webpage
+store the data of users that had given the tests
+should be able to generate excel sheet
+hosting on aissmscoe.tech
 
