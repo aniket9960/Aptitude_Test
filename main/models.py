@@ -11,14 +11,7 @@ class Branches(models.Model):
     def __str__(self):
         return self.title
 
-class Type(models.Model):
-    title = models.CharField(max_length=100)
-    
-    class Meta:
-        verbose_name_plural='Type'
-    
-    def __str__(self):
-        return self.title
+
 
 class QuizCategory(models.Model):
     title = models.CharField(max_length=100)
@@ -32,7 +25,6 @@ class QuizCategory(models.Model):
 class QuizQuestions(models.Model):
     branch = models.ForeignKey(Branches,on_delete=models.CASCADE, null=True)
     category = models.ForeignKey(QuizCategory,on_delete=models.CASCADE, null=True)
-    type = models.ForeignKey(Type,on_delete=models.CASCADE, null=True)
     question = models.TextField()
     option_1 = models.CharField(max_length=200)
     option_2 = models.CharField(max_length=200)

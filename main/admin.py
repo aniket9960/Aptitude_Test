@@ -5,10 +5,10 @@ class BranchesAdmin(admin.ModelAdmin):
     list_display=['id','title']
 admin.site.register(models.Branches,BranchesAdmin)
 admin.site.register(models.QuizCategory)
-admin.site.register(models.Type)
+
 
 class QuizQuestionAdmin(admin.ModelAdmin):
-    list_display=['question','type']
+    list_display=['question','correct_option']
 admin.site.register(models.QuizQuestions,QuizQuestionAdmin)
 
 class UserSubmittedAnswerAdmin(admin.ModelAdmin):

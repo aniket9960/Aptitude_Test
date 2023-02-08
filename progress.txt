@@ -26,7 +26,7 @@ update functions in views.py
 		-filter Question		=done
 			-branch			=done
 			-category		=done
-			-15 each on 1 type =60 total 	=Incomplete???
+				-60 total 	=Incomplete???
 
 update URL.py			=done
 	~index
@@ -61,7 +61,7 @@ if required
 after submitting all questions page should not get refreshed 		=Incomplete???
 
 
-remove type model
+remove type model							=Done
 display result in pie chart on webpage
 store the data of users that had given the tests
 should be able to generate excel sheet
