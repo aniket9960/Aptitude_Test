@@ -62,8 +62,8 @@ after submitting all questions page should not get refreshed 		=Incomplete???
 
 
 remove type model							=Done
-display result in pie chart on webpage
+display result in pie chart on webpage					=Done
 store the data of users that had given the tests
-should be able to generate excel sheet
+should be able to generate excel sheet 
 hosting on aissmscoe.tech
 

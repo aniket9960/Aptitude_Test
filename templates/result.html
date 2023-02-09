@@ -1,6 +1,11 @@
 {%extends 'base.html'%}
     
     {%block title%}Result{%endblock%}
+    {% block chart_style %}
+    .chartBox {
+        width:400px;
+    }
+    {% endblock chart_style %}
     {%load static%}
     {%block content%}
 
@@ -38,8 +43,12 @@
     <h4 class="my-4"><span>Branch: {{branch}}</span><span class="space">Category: {{category}}</span></h4>
     </div>
     <h4 class="my-4">Attempted Questions</h4>
+
+    <div class="chartBox">
+        <canvas id="myChart"> </canvas>
+    </div>
+    <br>
     <h5>Total Attempted {{attempted}} </h5>
-    <h6>Total Correct Answers : {{RightAns}}</h6>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -96,4 +105,30 @@
     </table>
     {% endif %}
 
+    
+
     {% endblock %}
+
+{%block script_js%}
+
+    const ctx = document.getElementById('myChart');
+  
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['Correct_Answers','Incorrect_Answers','Skipped_Questions'],
+        datasets: [{
+        
+          data: [{{RightAns}}, {{WrongAns}}, {{total_skipped}}],
+          borderWidth: 1,
+          backgroundColor:[
+          'rgb(69, 191, 85)',
+          'rgb(212, 13, 18)',
+          'rgb(255, 235, 59)'
+          ]
+        }]
+      },
+      options: {}
+    });
+  
+{%endblock script_js%}

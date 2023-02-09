@@ -11,7 +11,9 @@
 		.space {
 				  margin-left: 50px;
 			  }
-	</style>
+		{% block chart_style %}{% endblock chart_style %} 
+			</style>
+	
 </head>
 <body>
 	<main class="container">
@@ -21,5 +23,8 @@
 		{%block content%}{%endblock%}
 	</main>
 	<footer></footer>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.0/dist/chart.umd.min.js"></script>
+	<script>{%block script_js%} {%endblock script_js%}</script>
+	
 </body>
 </html>

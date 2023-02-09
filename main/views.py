@@ -24,6 +24,7 @@ def category_questions(request,b_id,cat_id):
     branch = models.Branches.objects.get(id=b_id)
     category = models.QuizCategory.objects.get(id=cat_id)
     question = models.QuizQuestions.objects.filter(category=category,branch=branch).order_by('id').first()
+    request.session['que_count'] += 1
     return render(request,'category-questions.html',{'question':question,'category':category,'branch_id':b_id})
 
 @login_required
@@ -33,6 +34,7 @@ def submit_answer(request,cat_id,b_id,question_id):
         branch = models.Branches.objects.get(id=b_id)
         category = models.QuizCategory.objects.get(id=cat_id)
         question = models.QuizQuestions.objects.filter(category=category,id__gt=question_id).exclude(id=question_id).order_by('id').first()
+        request.session['que_count'] += 1
         
         if 'skip' in request.POST:
             if question:
@@ -47,7 +49,7 @@ def submit_answer(request,cat_id,b_id,question_id):
             answer=request.POST['answer']
             models.UserSubmittedAnswer.objects.create(branch=branch,category=category,user=user,question=quest,right_answer=answer)
         
-        if question:
+        if question and request.session['que_count']<=5:
             return render(request,'category-questions.html',{'question':question,'category':category,'branch_id':b_id})
         else:
             #try making program sleep for 1sec to resolve last skip bug
@@ -56,11 +58,14 @@ def submit_answer(request,cat_id,b_id,question_id):
             attempted=models.UserSubmittedAnswer.objects.filter(user=request.user,branch=branch,category=category).exclude(right_answer='Not Submitted').count()
             
             RightAns = 0
+            WrongAns = 0
             for row in result:
                 if row.right_answer == row.question.correct_option:
                     RightAns+=1
+                else:
+                    WrongAns+=1
                      
-            return render(request,'result.html',{'result':result,'total_skipped':skipped,'attempted':attempted,'RightAns':RightAns, 'branch':branch, 'category':category}) 
+            return render(request,'result.html',{'result':result,'total_skipped':skipped,'attempted':attempted,'RightAns':RightAns, 'branch':branch, 'category':category,'WrongAns':WrongAns}) 
         
     else:
         return HttpResponse("Method Not Allowed!!!")
@@ -75,6 +80,7 @@ def result_cat(request,b_id):
 
 @login_required
 def branches(request):
+    request.session['que_count'] = 0
     B_Data = models.Branches.objects.all()
     return render(request,'branches.html',{'data':B_Data})
 
@@ -87,10 +93,13 @@ def result(request,b_id,cat_id):
     attempted=models.UserSubmittedAnswer.objects.filter(user=request.user,branch=branch,category=category).exclude(right_answer='Not Submitted').count()
             
     RightAns = 0
+    WrongAns = 0
     for row in result:
         if row.right_answer == row.question.correct_option:
             RightAns+=1
+        else:
+            WrongAns+=1
                      
-    return render(request,'result.html',{'result':result,'total_skipped':skipped,'attempted':attempted,'RightAns':RightAns, 'branch':branch, 'category':category}) 
+    return render(request,'result.html',{'result':result,'total_skipped':skipped,'attempted':attempted,'RightAns':RightAns, 'branch':branch, 'category':category,'WrongAns':WrongAns}) 
 
     
