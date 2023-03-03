@@ -1,16 +1,21 @@
-    {%extends 'base.html'%}
-    {%load static%}
-    
-    {%block title%}Dashboard{%endblock%}
-    {%block content%}
-    
-    <nav class="navbar navbar-expand-lg bg-light text-dark">
-      <div class="container">
+{%extends 'base.html'%} {%load static%} {%block title%}Dashboard{%endblock%}
+{%block content%}
+
+<!--
+    <nav class="navbar navbar-expand-lg bg-light text-dark" id="myNavbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
           <a class="navbar-brand">Aptitude</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aira-label="Tpgglenavigation">
-              <span class="navbar-toggler-icon"></span>
+          <button type="button" class="navbar-toggle bg-light text-dark" data-toggle="collapse" data-target="#myNavbar">
+            <span class="text-dark icon-bar"></span>
+            <span class="text-dark icon-bar"></span>
+            <span class="text-dark icon-bar"></span>                        
           </button>
-          <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup">
+        </div>
+
+          
+      
+          <div class="collapse navbar-collapse float-end" id="myNavbar">
               <div class="navbar-nav">
                   <a class="nav-link text-dark" href="{%url 'Home'%}">Home</a>
                   <a class="nav-link text-dark" href="{%url 'Branches'%}">Branches</a>
@@ -27,16 +32,54 @@
           </div>
       </div>
   </nav>
+-->
 
-            <header>
-      
-              <!-- Jumbotron -->
-            <div class="p-5 text-center bg-dark">
-                <h1 class="mb-3 text-light ">Aptitude Test Practice</h1><br>
-              <!-- Jumbotron -->
-            
-            </div>
-              
-                </header>
+<header class='Nav_header bg-light' >
+  <nav >
+    <a href="{%url 'Home'%}" id="logo">Aptitude</a>
+    <i class="fas fa-bars" id="ham-menu"></i>
+    <ul id="nav-bar">
+    <li>
+      <a href="{%url 'Home'%}">Home</a>
+    </li>
+    <li>
+      <a href="{%url 'Branches'%}">Branches</a>
+    </li>
+    {%if user.is_authenticated%}
+    <li>
+      <a href="{% url 'Result_Branch' %}">Results</a>
+    </li>
+    {% endif %}
+    <li>
+      <a href="{% url 'About' %}">Team</a>
+    </li>
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
+    {%if user.is_authenticated%}
+    <li>
+      <a href="{% url 'logout' %}">Logout</a>
+    </li>
+    {% endif %}
+    {% if not user.is_authenticated %}
+    <li>
+      <a href="{% url 'login' %}">Login</a>
+    </li>
+    <li>
+      <a href="{% url 'register' %}">Register</a>
+    </li>
+    {% endif %}
+    </ul>
+  </nav>
+  </header>
 
-    {%endblock%}
+<header>
+  <!-- Jumbotron -->
+  <div class="p-5 text-center bg-dark">
+    <h1 class="mb-3 text-light">Aptitude Test Practice</h1>
+    <br />
+    <!-- Jumbotron -->
+  </div>
+</header>
+
+{%endblock%}
