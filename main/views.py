@@ -6,7 +6,10 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    return render(request,'home.html')
+    return render(request,'index.html')
+
+def about(request):
+    return render(request,'about.html')
 
 def login(request):
     return render(request,'registration/login.html')
@@ -49,7 +52,7 @@ def submit_answer(request,cat_id,b_id,question_id):
             answer=request.POST['answer']
             models.UserSubmittedAnswer.objects.create(branch=branch,category=category,user=user,question=quest,right_answer=answer)
         
-        if question and request.session['que_count']<=5:
+        if question and request.session['que_count']<=30:
             return render(request,'category-questions.html',{'question':question,'category':category,'branch_id':b_id})
         else:
             #try making program sleep for 1sec to resolve last skip bug

@@ -5,6 +5,7 @@ urlpatterns = [
     path('' , views.index),
     path('aissms/' , views.aissms, name='Aissms'),
     path('home/' , views.index , name='Home'),
+    path('about/',views.about,name='About'),
     path('Branches/', views.branches,name='Branches'),
     path('Result-Branches/', views.result_branch,name='Result_Branch'),
     path('all-categories/<int:b_id>', views.all_categories, name='all_categories'),

@@ -1,0 +1,66 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}Dashboard{%endblock%}
+{%block content%}
+
+<nav class="navbar navbar-expand-lg bg-light text-dark">
+  <div class="container">
+      <a class="navbar-brand">Aptitude</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aira-label="Tpgglenavigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse float-end" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+              <a class="nav-link text-dark" href="{%url 'Home'%}">Home</a>
+              <a class="nav-link text-dark" href="{%url 'Branches'%}">Branches</a>
+              {%if user.is_authenticated%}
+              <a href="{% url 'Result_Branch' %}" class="nav-link text-dark float-end">Results</a>
+              <a href="{% url 'logout' %}" class="nav-link text-dark float-end">Logout</a>
+              {% endif %}
+              {% if not user.is_authenticated %}
+                <a class="nav-link text-dark" href="{%url 'login'%}">Login</a>
+                <a class="nav-link text-dark" href="{%url 'register'%}">Register</a>
+              {% endif %}
+          </div>				
+      </div>
+  </div>
+</nav>
+
+        <header>
+  
+          <!-- Jumbotron -->
+        <div class="p-5 text-center bg-dark">
+            <h1 class="mb-3 text-light ">About Authors</h1><br>
+          <!-- Jumbotron -->
+        
+        </div>
+          
+            </header>
+
+        <div class='container d-flex justify-content-around'>
+            <div class="card my-5" style="width:400px">
+                <img class="card-img-top img-responsive"  src="{% static 'img/p1.png' %}" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">Dr. Shashikant V. Athawale</h4>
+                  <p>Mentor</p>
+                  <p class="card-text">Eminent Academician | Wireless Ad hoc Network Research Expert | Aspiring Author | Lifelong Learner | Head Of Computer Department at AISSMSCOE Pune.</p>
+                  
+                </div>
+              </div>
+
+
+              <div class="card my-5" style="width:400px">
+                <img class="card-img-top img-responsive"  src="{% static 'img/p1.png' %}" alt="Card image">
+                <div class="card-body">
+                  <h4 class="card-title">Aniket Jagtap</h4>
+                  <p>Developer</p>
+                  <p class="card-text">BE Computer Engineering student at AISSMSCOE  Full Stack Developer</p>
+                  
+                </div>
+              </div>
+
+        </div>
+
+
+{%endblock%}
