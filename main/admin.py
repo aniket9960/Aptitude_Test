@@ -8,7 +8,8 @@ admin.site.register(models.QuizCategory)
 
 
 class QuizQuestionAdmin(admin.ModelAdmin):
-    list_display=['question','correct_option']
+    list_display=['branch','category','question','correct_option']
+    list_filter =('branch','category')
 admin.site.register(models.QuizQuestions,QuizQuestionAdmin)
 
 class UserSubmittedAnswerAdmin(admin.ModelAdmin):
