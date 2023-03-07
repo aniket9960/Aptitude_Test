@@ -24,8 +24,19 @@ def all_categories(request,b_id):
 
 @login_required
 def category_questions(request,b_id,cat_id):
+    
     branch = models.Branches.objects.get(id=b_id)
     category = models.QuizCategory.objects.get(id=cat_id)
+    user=request.user
+    #Delete previous result
+    try:
+        results = models.UserSubmittedAnswer.objects.filter(category=category,branch=branch,user=request.user)
+        results.delete()
+        print("Record deleted successfully!")
+    except:
+        print("Record doesn't exists")
+    #End Delete
+    
     question = models.QuizQuestions.objects.filter(category=category,branch=branch).order_by('id').first()
     request.session['que_count'] += 1
     return render(request,'category-questions.html',{'question':question,'category':category,'branch_id':b_id})
