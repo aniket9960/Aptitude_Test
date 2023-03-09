@@ -40,7 +40,18 @@
         <div class="row">
             {% for branch in data%}
             <div class="mt-5 mx-auto gap-2 d-grid col-5">
-                        <a href="{%url 'all_categories' branch.id%}" style="font-size:larger;" class="btn btn-primary">{{ branch.title}}</a><br>
+                        <a href="{%url 'all_categories' branch.id%}" style="font-size:20px; " class="btn btn-primary"><span>
+                        {%if branch.title == "Computer"%} <i class='fas fa-laptop' style='font-size:24px'></i>{% endif %}
+                        {% if branch.title == "Electrical" %} <i class="fa-solid fa-bolt" style='font-size:24px'></i>{% endif %}
+                        {% if branch.title == "Civil" %} <i class="fa-solid fa-helmet-safety" style='font-size:24px'></i>{% endif %}
+                        {% if branch.title == "Mechanical" %} <i class='fas fa-wrench' style='font-size:24px'></i>{% endif %}
+                        {% if branch.title == "Chemical" %} <i class="fa-sharp fa-solid fa-vial" style='font-size:24px'></i>{% endif %}
+                        {% if branch.title == "Electronics and Telecommunication" %} <i class="fas fa-broadcast-tower" style='font-size:24px'></i>{% endif %}
+                        {% if branch.title == "Mechanical Sandwich" %} <i class="fa-solid fa-gears" style='font-size:24px'></i>{% endif %}
+                        {% if branch.title == "Production S/W" %} <i class="fas fa-tools" style='font-size:24px'></i>{% endif %}
+                        {% if branch.title == "Robotics and Automation" %} <i class="fas fa-robot" style='font-size:24px'></i>{% endif %}
+                        
+                        </span>{{ branch.title}}</a><br>
             </div>
             
             {%endfor%}
